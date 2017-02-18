@@ -25,6 +25,12 @@ class Stack {
         Node *top;
         int length = 0;
         ~Stack();
+    public:
+    void push(int a){
+        Stack *NewStack = new Stack;
+        NewStack->value = value;
+        head++;
+    }
 };
 
 int pop(stak *next){
