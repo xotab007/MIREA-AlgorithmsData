@@ -17,8 +17,13 @@ struct Stack {
         void push(int a){
             head++;
         }
-};
 */
+};
+
+struct Node {
+    int data;
+    Node *previous, *next; //Указывает на соседние элементы
+};
 
 class Stack {
     private:
@@ -37,6 +42,10 @@ int pop(stak *next){
 };
 
 int main() {
+    Node *first = new Node;
+    Node *second = new Node;
+    first-> next = second;
+
     List *NewList = new List; //Выделяет память
     for (int i=0; i<5; ++i)
         Add(i, NewList);
