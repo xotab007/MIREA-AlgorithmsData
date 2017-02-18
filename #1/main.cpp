@@ -4,7 +4,7 @@ using namespace std;
 
 struct Stack {
     int value;
-    Node *next; //Указывает на следующий элемент
+    Element *next; //Указывает на следующий элемент
 };
 
 struct Element {
@@ -17,9 +17,19 @@ class Stack {
         Element *top;
         int length = 0;
     public:
-    void push(int a){
-
-    }
+        void push(int a){
+            if (length == 0) {
+                top = new Element; //Помещает новый элемент в вершину
+                top->value = a; //Записывает значение в элемент
+                length++; //Увеличиваем значение на единицу
+            } else {
+                Element *old =top; //Сохронет старое значение top
+                top = new Element; //Перезапись top
+                top->value = a;
+                top->next = old; //Показывает новому элементу элемент до него
+                length++;
+            }
+        }
 };
 
 int pop(stak *next){
