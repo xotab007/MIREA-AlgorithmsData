@@ -5,7 +5,8 @@ using namespace std;
 struct Stack {
     private:
         int value;
-        double *data;
+        int head = -1; //Крайний элемент
+        struct stack *next; //Указывает на следующий элемент
 
     public:
         Stack(){
@@ -13,8 +14,8 @@ struct Stack {
         }
 };
 
-int pop {
-    if (lengh == 0) {
+int pop(stak *next){
+    if (lengh == 0){
 
     }
 };
