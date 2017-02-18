@@ -3,11 +3,11 @@
 using namespace std;
 
 struct Stack {
-    private:
+//    private:
         int value;
 //        int head = -1; //Крайний элемент
-        struct stack *next; //Указывает на следующий элемент
-
+        Node *next; //Указывает на следующий элемент
+/*
     public:
         Stack(){
             Stack(int=5);
@@ -18,11 +18,16 @@ struct Stack {
             head++;
         }
 };
+*/
+
+class Stack {
+    private:
+        Node *top;
+        int length = 0;
+        ~Stack();
+};
 
 int pop(stak *next){
-    if (lengh == 0){
-
-    }
 };
 
 int main() {
