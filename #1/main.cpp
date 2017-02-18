@@ -60,8 +60,8 @@ class Queue {
             last->push(ahead->pop()); //Стек с обратным порядком переменных
         }
         ahead->push(a); //Добавление нового элемента
-        while (backward->size() > 0) {
-            forward->push(backward->pop());
+        while (last->size() > 0) {
+            ahead->push(last->pop());
         }
     }
 };
@@ -81,6 +81,13 @@ int main() {
     cout << stack->pop() << endl;
 
     delete stack;
+
+    Queue *NewQueue = new Queue;
+    NewQueue->push(1);
+    NewQueue->push(2);
+    NewQueue->push(3);
+
+    delete NewQueue;
 
     return 0;
 }
