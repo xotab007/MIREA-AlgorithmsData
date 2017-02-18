@@ -87,6 +87,10 @@ int main() {
     NewQueue->push(2);
     NewQueue->push(3);
 
+    cout << NewQueue->pop() << endl;
+    cout << NewQueue->pop() << endl;
+    cout << NewQueue->pop() << endl;
+
     delete NewQueue;
 
     return 0;
