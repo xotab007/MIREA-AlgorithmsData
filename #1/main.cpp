@@ -25,6 +25,11 @@ class Stack {
                 length++;
             }
         }
+    ~Stack() {
+        while (length > 0) {
+            pop();
+        }
+    }
     int pop(){ //Возврат значения
         if (length == 0){
             return -1;
