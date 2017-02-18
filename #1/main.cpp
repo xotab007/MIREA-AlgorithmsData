@@ -10,8 +10,10 @@ struct Stack {
 
     public:
         Stack(){
-            
+            Stack(int=5);
+            ~Stack();
         }
+        void pop();
 };
 
 int pop(stak *next){
@@ -21,8 +23,9 @@ int pop(stak *next){
 };
 
 int main() {
-    List *NewList = new List;
-
+    List *NewList = new List; //Выделяет память
+    for (int i=0; i<5; ++i)
+        Add(i, NewList);
     Show(NewList);
     return 0;
 }
