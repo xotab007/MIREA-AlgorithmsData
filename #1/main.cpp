@@ -42,6 +42,30 @@ class Stack {
     }
 };
 
+class Queue {
+    private:
+        Stack *ahead, *last;
+    public:
+        Queue(){
+            ahead = new Stack;
+            last = new Stack;
+        }
+        ~Queue(){
+            delete ahead;
+            delete last;
+        }
+
+    void push(int a) {
+        while (size()>0){
+            last->push(ahead->pop()); //Стек с обратным порядком переменных
+        }
+        ahead->push(a); //Добавление нового элемента
+        while (backward->size() > 0) {
+            forward->push(backward->pop());
+        }
+    }
+};
+
 int main() {
     Element *first = new Element;
     Element *second = new Element;
