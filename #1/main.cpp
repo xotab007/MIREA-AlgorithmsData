@@ -2,7 +2,7 @@
 
 using namespace std;
 
-struct Stack {
+struct Element {
     int value;
     Element *next; //Указывает на следующий элемент
 };
@@ -32,7 +32,15 @@ class Stack {
         }
 };
 
-int pop(stak *next){
+int pop(Element *next){
+    if (length == 0){
+        return -1;
+    }
+    Element *old = top;
+    int value = top->value; //Считываем value
+    top = top->next;
+    delete old;
+    return Element;
 };
 
 int main() {
