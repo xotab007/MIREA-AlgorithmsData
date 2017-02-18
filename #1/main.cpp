@@ -3,38 +3,22 @@
 using namespace std;
 
 struct Stack {
-//    private:
-        int value;
-//        int head = -1; //Крайний элемент
-        Node *next; //Указывает на следующий элемент
-/*
-    public:
-        Stack(){
-            Stack(int=5);
-            ~Stack();
-        }
-        void pop();
-        void push(int a){
-            head++;
-        }
-*/
+    int value;
+    Node *next; //Указывает на следующий элемент
 };
 
-struct Node {
-    int data;
-    Node *previous, *next; //Указывает на соседние элементы
+struct Element {
+    int value;
+    Element *previous, *next; //Указывает на соседние элементы
 };
 
 class Stack {
     private:
-        Node *top;
+        Element *top;
         int length = 0;
-        ~Stack();
     public:
     void push(int a){
-        Stack *NewStack = new Stack;
-        NewStack->value = value;
-        head++;
+
     }
 };
 
@@ -42,8 +26,8 @@ int pop(stak *next){
 };
 
 int main() {
-    Node *first = new Node;
-    Node *second = new Node;
+    Element *first = new Element;
+    Element *second = new Element;
     first-> next = second;
 
     List *NewList = new List; //Выделяет память
