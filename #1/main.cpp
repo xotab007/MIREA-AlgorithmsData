@@ -38,6 +38,7 @@ class Stack {
         int value = top->value; //Считывает value
         top = top->next; //Берет указатель next и делает его новым top
         delete old; //Удаляет старый top
+        length--; //Уменьшает счетчик на -1
         return value; //Возвращает сохраненное значение
     }
     int size(){
