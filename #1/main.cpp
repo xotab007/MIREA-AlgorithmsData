@@ -40,6 +40,9 @@ class Stack {
         delete old; //Удаляет старый top
         return value; //Возвращает сохраненное значение
     }
+    int size(){
+        return length;
+    }
 };
 
 class Queue {
@@ -66,6 +69,9 @@ class Queue {
     }
     int pop() {
         return ahead->pop();
+    }
+    int size(){
+        return ahead->length;
     }
 };
 
