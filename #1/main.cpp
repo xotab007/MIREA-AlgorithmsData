@@ -64,6 +64,9 @@ class Queue {
             ahead->push(last->pop());
         }
     }
+    int pop() {
+        return ahead->pop();
+    }
 };
 
 int main() {
