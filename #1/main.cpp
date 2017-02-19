@@ -71,7 +71,7 @@ class Queue {
         return ahead->pop();
     }
     int size(){
-        return ahead->length;
+        return ahead->size();
     }
 };
 
