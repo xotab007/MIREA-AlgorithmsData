@@ -77,10 +77,54 @@ class Queue {
 };
 
 int main() {
+/*
     Element *first = new Element;
     Element *second = new Element;
     first-> next = second;
+*/
+    NewQueue *queue = new NewQueue;
+    bool runnig = true; //Проверка логических условий
+    int enter = 0;
 
+    while (runnig) {
+        count << "0. exit" << endln;
+        count << "1. push" << endln;
+        count << "2. pop" << endln;
+        count << "3. pick" << endln;
+
+        cin >> enter; //Читаем введеное значение
+        switch (enter) { //Оператор множественного выбора
+            case 1: //Константное выражение №1
+                cout << "Please enter a number: ";
+                cin >> enter;
+                queue->push(enter);
+                cout << endl << "Pushed: " << enter << endl;
+                break;
+            case 2:
+                if (queue->size() > 0) {
+                    cout << endl << "Popped: " << queue->pop() << endl;
+                } else {
+                    cout << endl << "Queue is empty!" << endl;
+                }
+                break;
+            case 3:
+                if (queue->size() > 0) {
+                    cout << endl << "Picked: " << queue->pick() << endl;
+                } else {
+                    cout << endl << "Queue is empty!<< endl;
+                }
+                break;
+            default:
+                running = false;
+                break;
+
+                string tmp;
+                cin.ignore(); //Чистит память ввода
+                getline(cin, tmp);
+        }
+    }
+
+/*
     Stack *stack = new Stack;
     stack->push(1);
     stack->push(2);
@@ -100,8 +144,9 @@ int main() {
     cout << NewQueue->pop() << endl;
     cout << NewQueue->pop() << endl;
     cout << NewQueue->pop() << endl;
-
+*/
     delete NewQueue;
 
     return 0;
+
 }
