@@ -82,7 +82,7 @@ int main() {
     Element *second = new Element;
     first-> next = second;
 */
-    NewQueue *queue = new NewQueue;
+    Queue *queue = new Queue;
     bool runnig = true; //Проверка логических условий
     int enter = 0;
 
@@ -122,7 +122,7 @@ int main() {
         string tmp;
         cin.ignore(); //Чистит память ввода
         getline(cin, tmp);
-        
+
     }
 
 /*
@@ -146,7 +146,7 @@ int main() {
     cout << NewQueue->pop() << endl;
     cout << NewQueue->pop() << endl;
 */
-    delete NewQueue;
+    delete Queue;
 
     return 0;
 
