@@ -111,7 +111,7 @@ int main() {
                 if (queue->size() > 0) {
                     cout << endl << "Picked: " << queue->pick() << endl;
                 } else {
-                    cout << endl << "Queue is empty!<< endl;
+                    cout << endl << "Queue is empty!" << endl;
                 }
                 break;
             default:
