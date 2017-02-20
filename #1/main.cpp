@@ -25,9 +25,10 @@ class Stack {
                 length++;
             }
         }
-    Stack() {
+    Stack(){
         length = 0;
     }
+
     ~Stack() {
         while (length > 0) {
             pop();
@@ -86,14 +87,13 @@ int main() {
     first-> next = second;
 */
     Queue *queue = new Queue;
-    bool runnig = true; //Проверка логических условий
+    bool running = true; //Проверка логических условий
     int enter = 0;
 
-    while (runnig) {
-        count << "0. exit" << endln;
-        count << "1. push" << endln;
-        count << "2. pop" << endln;
-        count << "3. pick" << endln;
+    while (running) {
+        cout << "0. exit" << endl;
+        cout << "1. push" << endl;
+        cout << "2. pop" << endl;
 
         cin >> enter; //Читаем введеное значение
         switch (enter) { //Оператор множественного выбора
@@ -106,13 +106,6 @@ int main() {
             case 2:
                 if (queue->size() > 0) {
                     cout << endl << "Popped: " << queue->pop() << endl;
-                } else {
-                    cout << endl << "Queue is empty!" << endl;
-                }
-                break;
-            case 3:
-                if (queue->size() > 0) {
-                    cout << endl << "Picked: " << queue->pick() << endl;
                 } else {
                     cout << endl << "Queue is empty!" << endl;
                 }
@@ -149,7 +142,7 @@ int main() {
     cout << NewQueue->pop() << endl;
     cout << NewQueue->pop() << endl;
 */
-    delete Queue;
+    delete queue;
 
     return 0;
 
