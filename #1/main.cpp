@@ -117,11 +117,12 @@ int main() {
             default:
                 running = false;
                 break;
-
-                string tmp;
-                cin.ignore(); //Чистит память ввода
-                getline(cin, tmp);
         }
+
+        string tmp;
+        cin.ignore(); //Чистит память ввода
+        getline(cin, tmp);
+        
     }
 
 /*
