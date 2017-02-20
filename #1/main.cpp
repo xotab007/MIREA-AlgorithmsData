@@ -143,7 +143,6 @@ int main() {
     cout << NewQueue->pop() << endl;
 */
     delete queue;
-
     return 0;
 
 }
