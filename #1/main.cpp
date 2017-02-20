@@ -10,7 +10,7 @@ struct Element {
 class Stack {
     private:
         Element *top;
-        int length = 0;
+        int length;
     public:
         void push(int a){
             if (length == 0) {
@@ -25,6 +25,9 @@ class Stack {
                 length++;
             }
         }
+    Stack() {
+        length = 0;
+    }
     ~Stack() {
         while (length > 0) {
             pop();
