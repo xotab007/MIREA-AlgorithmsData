@@ -91,9 +91,9 @@ int main() {
     int enter = 0;
 
     while (running) {
-        cout << "0. exit" << endl;
         cout << "1. push" << endl;
         cout << "2. pop" << endl;
+        cout << "Press any number to exit" << endl;
 
         cin >> enter; //Читаем введеное значение
         switch (enter) { //Оператор множественного выбора
@@ -114,6 +114,7 @@ int main() {
                 running = false;
                 break;
         }
+        cout << "Press Enter to continue";
 
         string tmp;
         cin.ignore(); //Чистит память ввода
