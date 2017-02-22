@@ -15,6 +15,9 @@ class Stack {
         Stack(){
             top = NULL;
         }
+        bool empty(){
+            return (top == NULL);
+        }
         void push(int a){
             if (empty()) {
                 top = new Element;
@@ -40,22 +43,18 @@ class Stack {
         }
     }
 
-    bool empty(){
-            return (top->next == NULL);
-    }
-
     int pop(){ //Возврат значения
         if (empty()){
             throw "Empty";
 //            return -1;
-            return empty();
-        }
-        Element *old = top;
-        int value = top->value; //Считывает value
-        top = top->next; //Берет указатель next и делает его новым top
-        delete old; //Удаляет старый top
+        } else {
+            Element *old = top;
+            int value = top->value; //Считывает value
+            top = top->next; //Берет указатель next и делает его новым top
+            delete old; //Удаляет старый top
 //        length--; //Уменьшает счетчик на -1
-        return value; //Возвращает сохраненное значение
+            return value; //Возвращает сохраненное значение
+        }
     }
 /*
     int size(){
@@ -78,7 +77,9 @@ class Queue {
         }
 
     void push(int a) {
-        int b;
+//        int b;
+        Stack *c;
+        ahead->push(a); //Добавление нового элемента
         while (!(ahead->empty())){
             int b = ahead->pop();
             /*if (b == -1) {
@@ -86,7 +87,11 @@ class Queue {
             }*/
             last->push(b); //Стек с обратным порядком переменных
         }
-        ahead->push(a); //Добавление нового элемента
+        c = ahead;
+        ahead = last;
+        last = c;
+        delete c;
+
         while (true) {
             int b;
             b = last->pop();
@@ -126,22 +131,27 @@ int main() {
             case 1: //Константное выражение №1
                 cout << "Please enter a number: ";
                 cin >> enter;
-                queue->push(enter);
+                try {
+                    queue->push(enter);
+                }
+                catch (const char *ex){
+                    cout <<ex<<endl;
+                }
                 cout << endl << "Pushed: " << enter << endl;
                 break;
             case 2:
                 int b;
-                b = queue->pop();
+                try{
+                    queue->pop();
+                    b = queue->pop();
+                }
+                catch (const char *ex){
+                    cout <<ex<<endl;
+                }
                 if (b != -1) {
                     cout << endl << "Popped: " << b << endl;
                 } else {
                     cout << endl << "Queue is empty!" << endl;
-                }
-                try{
-                    queue->pop();
-                }
-                catch (const char *ex){
-                    cout <<ex<<endl;
                 }
                 break;
             default:
