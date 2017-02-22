@@ -16,7 +16,7 @@ class Stack {
             top = NULL;
         }
         void push(int a){
-            if (top == NULL) {
+            if (empty()) {
                 top = new Element;
                 top->next = NULL;
 //                top = new Element; //Помещает новый элемент в вершину
@@ -35,18 +35,20 @@ class Stack {
     }
 */
     ~Stack() {
-        while (top == NULL) {
+        while (empty()) {
             pop();
         }
     }
 
-    bool empty(int Stack){
-            return (value == NULL);
+    bool empty(){
+            return (top->next == NULL);
     }
 
     int pop(){ //Возврат значения
-        if (top == NULL){
-            return -1;
+        if (empty()){
+            throw "Empty";
+//            return -1;
+            return empty();
         }
         Element *old = top;
         int value = top->value; //Считывает value
@@ -77,9 +79,9 @@ class Queue {
 
     void push(int a) {
         int b;
-        while ((b = ahead->pop()) != -1){
-            /*int b = ahead->pop();
-            if (b == -1) {
+        while (!(ahead->empty())){
+            int b = ahead->pop();
+            /*if (b == -1) {
                 break;
             }*/
             last->push(b); //Стек с обратным порядком переменных
@@ -134,6 +136,12 @@ int main() {
                     cout << endl << "Popped: " << b << endl;
                 } else {
                     cout << endl << "Queue is empty!" << endl;
+                }
+                try{
+                    queue->pop();
+                }
+                catch (const char *ex){
+                    cout <<ex<<endl;
                 }
                 break;
             default:
