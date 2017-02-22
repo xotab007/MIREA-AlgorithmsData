@@ -10,44 +10,56 @@ struct Element {
 class Stack {
     private:
         Element *top;
-        int length;
+//        int length;
     public:
+        Stack(){
+            top = NULL;
+        }
         void push(int a){
-            if (length == 0) {
-                top = new Element; //Помещает новый элемент в вершину
+            if (top == NULL) {
+                top = new Element;
+                top->next = NULL;
+//                top = new Element; //Помещает новый элемент в вершину
                 top->value = a; //Записывает значение в элемент
-                length++; //Увеличиваем значение на единицу
             } else {
                 Element *old =top; //Сохронет старое значение top
                 top = new Element; //Перезапись top
                 top->value = a;
                 top->next = old; //Показывает новому элементу элемент до него
-                length++;
             }
+//            length++; //Увеличиваем значение на единицу
         }
+/*
     Stack(){
         length = 0;
     }
-
+*/
     ~Stack() {
-        while (length > 0) {
+        while (top == NULL) {
             pop();
         }
     }
+
+    bool empty(int Stack){
+            return (value == NULL);
+    }
+
     int pop(){ //Возврат значения
-        if (length == 0){
+        if (top == NULL){
             return -1;
         }
         Element *old = top;
         int value = top->value; //Считывает value
         top = top->next; //Берет указатель next и делает его новым top
         delete old; //Удаляет старый top
-        length--; //Уменьшает счетчик на -1
+//        length--; //Уменьшает счетчик на -1
         return value; //Возвращает сохраненное значение
     }
+/*
     int size(){
         return length;
     }
+*/
 };
 
 class Queue {
@@ -64,20 +76,32 @@ class Queue {
         }
 
     void push(int a) {
-        while (size()>0){
-            last->push(ahead->pop()); //Стек с обратным порядком переменных
+        int b;
+        while ((b = ahead->pop()) != -1){
+            /*int b = ahead->pop();
+            if (b == -1) {
+                break;
+            }*/
+            last->push(b); //Стек с обратным порядком переменных
         }
         ahead->push(a); //Добавление нового элемента
-        while (last->size() > 0) {
-            ahead->push(last->pop());
+        while (true) {
+            int b;
+            b = last->pop();
+            if (b == -1){
+                break;
+            }
+            ahead->push(b);
         }
     }
     int pop() {
         return ahead->pop();
     }
+/*
     int size(){
         return ahead->size();
     }
+*/
 };
 
 int main() {
@@ -93,7 +117,7 @@ int main() {
     while (running) {
         cout << "1. push" << endl;
         cout << "2. pop" << endl;
-        cout << "...or press any number to exit" << endl;
+        cout << "...or press Ctrl+C to Exit" << endl;
 
         cin >> enter; //Читаем введеное значение
         switch (enter) { //Оператор множественного выбора
@@ -104,8 +128,10 @@ int main() {
                 cout << endl << "Pushed: " << enter << endl;
                 break;
             case 2:
-                if (queue->size() > 0) {
-                    cout << endl << "Popped: " << queue->pop() << endl;
+                int b;
+                b = queue->pop();
+                if (b != -1) {
+                    cout << endl << "Popped: " << b << endl;
                 } else {
                     cout << endl << "Queue is empty!" << endl;
                 }
