@@ -90,6 +90,71 @@ public:
         */
     };
 
+    void remove(int key) {
+        // Ищем элемент и его родителя
+        Node* parent = NULL;
+        Node* tmp = root;
+
+        while (true) {
+            if (key < tmp->key && tmp->left != NULL) {
+                parent = tmp;
+                tmp = tmp->left;
+            } else if (key > tmp->key && tmp->right != NULL) {
+                parent = tmp;
+                tmp = tmp->right;
+            } else {
+                break;
+            }
+        }
+
+        if (tmp->key != key) { // не нашли :C
+            return;
+        }
+
+        // Потомков нету (как и этого слова)
+        //          ⇑______________________⇓
+        else if (tmp->left == NULL && tmp->right == NULL) {
+            if (tmp->key < parent->key) {
+                parent->left = NULL;
+            } else if (tmp->key > parent->key) {
+                parent->right = NULL;
+            }
+            delete tmp; // премия Дарвина
+        }
+
+        // Один потомок (слева)
+        else if (tmp->left != NULL && tmp->right == NULL) {
+            tmp->key = tmp->left->key;
+            delete tmp->left;
+            tmp->left = NULL;
+        }
+
+        // Один потомок (справа)
+        else if (tmp->right != NULL && tmp->left == NULL) {
+            tmp->key = tmp->right->key;
+            delete tmp->right;
+            tmp->right = NULL;
+        }
+
+        // 10₂ потомков (всё сложно)
+        else if (tmp->left != NULL && tmp->right != NULL) {
+            //int tmp_key = tmp->children[1]->min()->key;
+            // Ищем минимального потомка в правом поддереве
+
+            Node* tmp_min = tmp->right;
+            while (tmp_min->left != NULL) {
+                tmp_min = tmp_min->left;
+            }
+            int tmp_key = tmp_min->key;
+
+            // Проводим странные махинации
+            remove(tmp_key);
+            tmp->key = tmp_key;
+        }
+
+        return; // Готово! Вы восхитительны!
+    }
+
     
 
     // идеальная функция поиска В ней ничего не надо менять
