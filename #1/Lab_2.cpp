@@ -9,6 +9,8 @@
  *
  */
 
+#include <iostream>
+
 struct Node{
     int key; // Индекс значения в кружочке
     Node *left, *right;
@@ -91,7 +93,7 @@ public:
     
 
     // идеальная функция поиска В ней ничего не надо менять
-    bool search(int key){
+    bool search(int x){
         Node* a = root; // a -- рамочка
 
         while (a != NULL){
