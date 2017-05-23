@@ -9,10 +9,13 @@
  */
 
 #include <iostream>
-#include <vector>
+#include <vector> // Для векторов std::vector
+#include <math.h> // Для функции pow(число, степень)
 
-std::vector< std::vector<int> > generator(int N) {
-    std::vector< std::vector<int> > result(N);
+#define MATRIX std::vector< std::vector<int> >
+
+MATRIX generator(int N) {
+    MATRIX result(N);
 
     srand(time(NULL));
     for (int i = 0; i < N; i++) {
@@ -24,7 +27,7 @@ std::vector< std::vector<int> > generator(int N) {
     return result;
 }
 
-void print_matrix(std::vector< std::vector<int> > matrix) {
+void print_matrix(MATRIX matrix) {
     for (unsigned int i = 0; i < matrix.size(); i++) {
         for (unsigned int j = 0; j < matrix[i].size(); j++) {
             printf("%d ", matrix[i][j]);
@@ -33,13 +36,58 @@ void print_matrix(std::vector< std::vector<int> > matrix) {
     }
 }
 
+int brute_force(MATRIX matrix) {
+    int best_result = 100500;
+
+    for (long int state = 0; state < pow(2, (matrix.size()-1)*2); state++) {
+        unsigned int x = 0; unsigned int y = 0; // текущие координаты
+
+        int result = matrix[x][y];
+        for (unsigned int i = 0; i < (matrix.size()-1)*2; i++) {
+            if ((state >> i) & 1) { // вправо
+                if (++x >= matrix.size()) break;
+            } else { // вниз
+                if (++y >= matrix.size()) break;
+            }
+            result += matrix[x][y];
+        }
+
+        if (result < best_result) {
+            best_result = result;
+        }
+    }
+
+    return best_result;
+}
+
+int dynamic(MATRIX matrix) {
+    for (unsigned int i = 0; i < matrix.size(); i++) {
+        for (unsigned int j = 0; j < matrix[i].size(); j++) {
+            if (i > 0 && j > 0) {
+                matrix[i][j] += fmin(matrix[i-1][j], matrix[i][j-1]);
+            } else {
+                if (i>0) {
+                    matrix[i][j] += matrix[i-1][j];
+                } else if (j > 0) {
+                    matrix[i][j] += matrix[i][j-1];
+                }
+            }
+        }
+    }
+    return matrix[matrix.size() - 1][matrix.size() - 1];
+}
+
 int main(int argc, char **argv) {
 
-    print_matrix(generator(5));
+    MATRIX matrix = generator(5);
+    print_matrix(matrix);
+    printf("brute force: %d\n", brute_force(matrix));
+    printf("dynamic: %d\n", dynamic(matrix));
 
     return 0;
 }
 
+/*
 int main()
 {
     int num;
@@ -58,3 +106,4 @@ int main()
 int random(int random_min, int random_max) {
     return random() % (random_max - random_min + 1);
 }
+ */
