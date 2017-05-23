@@ -34,6 +34,7 @@ void print_matrix(MATRIX matrix) {
         }
         printf("\n");
     }
+    printf("\n");
 }
 
 int brute_force(MATRIX matrix) {
@@ -45,9 +46,15 @@ int brute_force(MATRIX matrix) {
         int result = matrix[x][y];
         for (unsigned int i = 0; i < (matrix.size()-1)*2; i++) {
             if ((state >> i) & 1) { // вправо
-                if (++x >= matrix.size()) break;
+                if (++x >= matrix.size()) {
+                    result = 100500;
+                    break;
+                }
             } else { // вниз
-                if (++y >= matrix.size()) break;
+                if (++y >= matrix.size()) {
+                    result = 100500;
+                    break;
+                }
             }
             result += matrix[x][y];
         }
@@ -66,7 +73,7 @@ int dynamic(MATRIX matrix) {
             if (i > 0 && j > 0) {
                 matrix[i][j] += fmin(matrix[i-1][j], matrix[i][j-1]);
             } else {
-                if (i>0) {
+                if (i > 0) {
                     matrix[i][j] += matrix[i-1][j];
                 } else if (j > 0) {
                     matrix[i][j] += matrix[i][j-1];
@@ -74,6 +81,7 @@ int dynamic(MATRIX matrix) {
             }
         }
     }
+
     return matrix[matrix.size() - 1][matrix.size() - 1];
 }
 
@@ -86,24 +94,3 @@ int main(int argc, char **argv) {
 
     return 0;
 }
-
-/*
-int main()
-{
-    int num;
-    cout << "Enter size: ";
-    cin >> num;
-
-    int *coin = new int[num];
-    for (int i = 0; i < num; i++) {
-        coin[i] = i;
-        cout << "Value of " << i << " element is " << coin[i] << endl;
-    }
-    delete [] coin;
-    return 0;
-}
-
-int random(int random_min, int random_max) {
-    return random() % (random_max - random_min + 1);
-}
- */
